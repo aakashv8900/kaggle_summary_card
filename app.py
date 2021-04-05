@@ -1,5 +1,8 @@
-import flask
+import flask 
 from flask import request, jsonify
+import scrapy
+from scrapy.selector import Selector 
+from scrapy.http import HtmlResponse
 
 app = flask.Flask(__name__)
 
@@ -7,13 +10,11 @@ app = flask.Flask(__name__)
 def index():
     return "hello"
 
-@app.route("/api",methods=["GET"])
-def api():
-    if "user" in request.args:
-        return "Welcome "+request.args["user"]
-    return "No user!"
 
-
+@app.route("/selection")
+def selection():
+    response = HtmlResponse(url = 'http://kaggle.com') 
+    Selector(response = response).xpath('//span/text()').extract()
 
 
 
