@@ -1,4 +1,7 @@
 import scrapy
+from scrapy.selector import Selector
+from scrapy.spider import BaseSpider
+from scrapy.selector import HtmlXPathSelector
 
 
 class ScrapingSpider(scrapy.Spider):
@@ -6,7 +9,10 @@ class ScrapingSpider(scrapy.Spider):
     start_urls = ['https://www.kaggle.com/aakashverma8900']
 
     def parse(self, response):
-        data={}
-        page=response.css('profile-container')
-        data['title'] = page.css('div.profile__user-content div.pageheader__title pageheader__title--profile span.profile__head-display-name::text').extract()
-        yield data
+        hxs = HtmlXPathSelector(response)
+        dive = response.xpath('//div[@id="MathJax_Message""]')
+        items = []
+        item = DmozItem()
+        item["title"] = response.xpath('/html/head/title').extract()
+        items.append(item)
+        return items
