@@ -29,10 +29,13 @@ pyOpenSSL==20.0.1
 queuelib==1.5.0
 requests==2.25.1
 Scrapy==2.4.1
+scrapy-user-agents==0.1.1
 service-identity==18.1.0
 six==1.15.0
 Twisted==21.2.0
+ua-parser==0.10.0
 urllib3==1.26.4
+user-agents==2.2.0
 w3lib==1.22.0
 Werkzeug==1.0.1
 zope.interface==5.3.0
