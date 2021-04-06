@@ -14,10 +14,7 @@ NEWSPIDER_MODULE = 'scrape.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-custom_settings = { 
-    'USER_AGENT': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0; 
-}
-
+#USER_AGENT = Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
