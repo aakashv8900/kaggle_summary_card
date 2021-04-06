@@ -8,8 +8,12 @@ from scrapy.http import HtmlResponse
 
 app = flask.Flask(__name__)
 
+
+
 @app.route("/")
-def scrape():
+def index():
+    return "Heya"
+
 
 
     
@@ -18,7 +22,11 @@ def scrape():
 @app.route("/api",methods=["GET"])
 def api():
     if "user" in request.args:
-        return "Welcome "+request.args["user"]
+        response = requests.get("https://kaggle.com/"+request.args["user"])
+        if response.status_code == 200:
+            print(response.text)
+            return "kaggle profile exist"
+        return "kaggle profile does not exist"
     return "No user!"
 
 
