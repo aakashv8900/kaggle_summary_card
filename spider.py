@@ -1,4 +1,5 @@
 import scrapy
+import json
 
 class KaggleStripper(scrapy.Spider):
     name = 'sasori'
@@ -13,9 +14,28 @@ class KaggleStripper(scrapy.Spider):
 
     def start_requests(self):
         
-        main_section = self.selector.css(".profile__head-display-name::text")
+        main_section = self.selector.css(".kaggle-component").extract()[1]
         print("lol")
-        print(main_section.extract())
+        o = c = 0
+        third = 0
+        for i in range(len(main_section)):
+            if main_section[i] == "{":
+                o = i
+                third+=1
+                if third == 2:
+                    break
+        
+        for i in range(len(main_section)):
+            if main_section[i] == "}":
+                c = i
+                
+
+        print(main_section[o:c+1])
+        with open("profile.json", "w") as file:
+            file.write(main_section[o:c+1])
+
+
+        #print(ast.literal_eval(main_section[o:c+1]))
         
 
     def parse(self, response):
