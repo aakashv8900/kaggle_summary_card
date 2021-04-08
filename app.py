@@ -1,5 +1,5 @@
 import flask 
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 import requests
 import json
 import scrapy
@@ -29,9 +29,11 @@ def api():
         response = requests.get(complete_url)
         if response.status_code == 200:
             crawler = KaggleStripper(response)
-            crawler.start_requests()
-            #print(response.text)
-            return "kaggle profile exist"
+            data = crawler.start_requests()
+            sdata = ''.join(list(data))
+
+            print(sdata)
+            return render_template("card.html",data = sdata)
         return "kaggle profile does not exist"
     return "No user!"
 
