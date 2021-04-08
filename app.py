@@ -33,6 +33,7 @@ def api():
             sdata = ''.join(list(data))
 
             print(sdata)
+            sdata = sdata.replace("\\","")
             return render_template("card.html",data = sdata)
         return "kaggle profile does not exist"
     return "No user!"
