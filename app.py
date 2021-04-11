@@ -1,5 +1,5 @@
 import flask 
-from flask import request, jsonify, render_template
+from flask import request, jsonify, render_template, Markup, make_response
 import requests
 import json
 import scrapy
@@ -37,7 +37,10 @@ def api():
             print(sdata)
             sdata = sdata.replace("\\","")
             
-            return render_template("main.html",data = sdata)
+            #return render_template("main.svg",data = sdata)
+            response = make_response(present(), 200)
+            response.mimetype = "image/svg+xml"
+            return response
         return "kaggle profile does not exist"
     return "No user!"
 
