@@ -7,6 +7,8 @@ from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 from scrapy.crawler import CrawlerRunner
 from spider import KaggleStripper
+from styles import tier_colour
+from html_local import present
 
 
 app = flask.Flask(__name__)
@@ -34,7 +36,8 @@ def api():
 
             print(sdata)
             sdata = sdata.replace("\\","")
-            return render_template("card.html",data = sdata)
+            
+            return render_template("main.html",data = sdata)
         return "kaggle profile does not exist"
     return "No user!"
 
@@ -48,4 +51,5 @@ def selection():
 
 
 if __name__ == "__main__":
+    
     app.run(debug=True)
