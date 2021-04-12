@@ -7,3 +7,5 @@ tier_colour = {
  "grandmaster" : "#dfac19"
 
 }
+
+

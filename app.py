@@ -8,7 +8,7 @@ from scrapy.http import HtmlResponse
 from scrapy.crawler import CrawlerRunner
 from spider import KaggleStripper
 from styles import tier_colour
-from html_local import present
+from html_local import KaggleStyles
 
 
 app = flask.Flask(__name__)
@@ -29,6 +29,7 @@ def api():
     if "user" in request.args:
         complete_url = "https://kaggle.com/"+request.args["user"]
         response = requests.get(complete_url)
+        kstyle = KaggleStyles()
         if response.status_code == 200:
             crawler = KaggleStripper(response)
             data = crawler.start_requests()
@@ -36,9 +37,11 @@ def api():
 
             print(sdata)
             sdata = sdata.replace("\\","")
-            
+            obj = json.loads(sdata)
+            for i,j in obj.items():
+                print("{} : {}".format(i,j))
             #return render_template("main.svg",data = sdata)
-            response = make_response(present(), 200)
+            response = make_response(kstyle.present(), 200)
             response.mimetype = "image/svg+xml"
             return response
         return "kaggle profile does not exist"
