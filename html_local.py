@@ -4,7 +4,7 @@ class KaggleStyles:
         
         
         style = """<style>
-                    @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+                    @import url(https://fonts.googleapis.com/css2?family=Inter);
                     @keyframes currstreak {
                         0% { font-size: 3px; opacity: 0.2; }
                         80% { font-size: 34px; opacity: 1; }
@@ -30,11 +30,7 @@ class KaggleStyles:
                         </clipPath>
                     </defs>
 
-                    <defs>
-                        <pattern id="profileimg" patternUnits="userSpaceOnUse" width="100" height="100">
-                            <image href="{data["userAvatarUrl"]}" x="0" y="0" width="50" height="48" />
-                        </pattern>
-                        </defs>
+               
 
 
                     <g xmlns="http://www.w3.org/2000/svg" style="isolation:isolate">
@@ -42,7 +38,23 @@ class KaggleStyles:
                     </g>
                     
 
-            <g xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" transform="scale(2.5)"><circle r="22.5" cx="24" cy="24" fill="url(#profileimg)" stroke-width="3" style="stroke: rgb(241, 243, 244);"/><path d="M 10.774831823419357 42.20288237343632 A 22.5 22.5 0 1 0 24 1.5" fill="none" style="stroke: rgb(101, 31, 255);" stroke-width="3"/></g>
+                    <g xmlns="http://www.w3.org/2000/svg" transform="translate(1,48)">
+                    
+                    <text x="20" y="-12" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:22px;font-style:normal;fill:#151515;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {data["displayName"]}
+                    </text>
+
+                     <text x="20" y="22" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:500;font-size:14px;font-style:normal;fill:#151515;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {"" if not data["occupation"] or not data["organization"] else data["occupation"]+" at " + data["organization"]}
+                    </text>
+
+                    <text x="20" y="40" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:500;font-size:14px;font-style:normal;fill:#151515;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {"" if not data["country"] else data["country"]+", "}{"" if not data["region"] else data["region"]+", "}{"" if not data["city"] else data["city"]}.
+                    </text>
+                   
+                </g>
+
+            <!--<g xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" transform="scale(2.5)"><circle r="22.5" cx="24" cy="24" fill="url(#profileimg)" stroke-width="3" style="stroke: rgb(241, 243, 244);"/><path d="M 10.774831823419357 42.20288237343632 A 22.5 22.5 0 1 0 24 1.5" fill="none" style="stroke: rgb(101, 31, 255);" stroke-width="3"/></g>-->
 
                 </svg>
 

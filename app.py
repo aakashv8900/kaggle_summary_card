@@ -40,7 +40,7 @@ def api():
             obj = json.loads(sdata)
             for i,j in obj.items():
                 print("{} : {}".format(i,j))
-            #return render_template("main.svg",data = sdata)
+            
             response = make_response(kstyle.present(obj), 200)
             response.mimetype = "image/svg+xml"
             return response
