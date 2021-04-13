@@ -22,8 +22,6 @@ def index():
 
 
     
-
-
 @app.route("/api",methods=["GET"])
 def api():
     if "user" in request.args:
