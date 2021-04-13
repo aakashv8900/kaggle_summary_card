@@ -34,13 +34,6 @@ class KaggleStripper(scrapy.Spider):
         return main_section[o:c+1]
 
 
-        '''
-        with open("profile.json", "w") as file:
-            file.write(main_section[o:c+1])
-        '''
-
-        #print(ast.literal_eval(main_section[o:c+1]))
-        
 
     def parse(self, response):
         
