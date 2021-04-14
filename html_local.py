@@ -62,6 +62,42 @@ class KaggleStyles:
                         Following : {data["following"]["count"]}
                     </text>
                 </g>
+                
+               <g xmlns="http://www.w3.org/2000/svg" transform="translate(20.000000,185.000000) scale(0.050000,-0.05)" fill="#ad7615" stroke="none">
+                <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#ffd448;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
+                <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
+                
+                </g>
+                
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate(170.000000,185.000000) scale(0.050000,-0.05)" fill="#838280" stroke="none">
+                <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#e9e9e9;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
+                <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
+                </g>
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate(320.000000,185.000000) scale(0.050000,-0.05)" fill="#8e5b3d" stroke="none">
+                <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#f0ba7c;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
+                <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
+                </g>
+                
+                
+                
+                
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate(40,185)">
+                    
+                    <text x="20" y="-12" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:16px;font-style:normal;fill:#ad7615;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {self.medalCounts(data,type="gold")}
+                    </text>
+
+                     <text x="170" y="-12" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:16px;font-style:normal;fill:#838280;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                       {self.medalCounts(data,type="silver")}
+                    </text>
+
+                    <text x="320" y="-12" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:16px;font-style:normal;fill:#8e5b3d;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                       {self.medalCounts(data,type="bronze")}
+                    </text>
+                   
+
+                  
+                </g>
 
             <!--<g xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" transform="scale(2.5)"><circle r="22.5" cx="24" cy="24" fill="url(#profileimg)" stroke-width="3" style="stroke: rgb(241, 243, 244);"/><path d="M 10.774831823419357 42.20288237343632 A 22.5 22.5 0 1 0 24 1.5" fill="none" style="stroke: rgb(101, 31, 255);" stroke-width="3"/></g>-->
 
@@ -69,5 +105,30 @@ class KaggleStyles:
 
 
             """
+    
+    def medalCounts(self,data,type = None):
+        """
+        Count the current total medals from each tier.
+        
+        Arguements
+        ----------
+        data : Kaggle data in Dictionary format
+        type : defines the medal type.
+        
+        Return
+        ------
+        count : count of total medal of a certain type.
+        """
+        
+        if not type:
+            return 0
+        
+        sections = ["competitionsSummary", "scriptsSummary", "discussionsSummary", "datasetsSummary"]
+        types = {"gold" : "totalGoldMedals", "silver" : "totalSilverMedals", "bronze" : "totalBronzeMedals"}
 
+        count = 0
 
+        for section in sections:
+            count += data[section][types[type]]
+            
+        return count
