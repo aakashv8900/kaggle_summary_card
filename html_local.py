@@ -1,7 +1,27 @@
 from styles import tier_colour
-from badges import badge
+from badges import Badge
+
+
+badge_obj = Badge() 
 
 class KaggleStyles:
+    def __init__(self,extend=False):
+        if extend == True:
+            self.scale = "scale(1.2)"
+            self.scaler = 1.2
+            badge_obj.scale = 1.35
+            self.bottom = [120,135]
+            self.medalText = "Medals :"
+            self.isExtend = True
+         
+            
+        else:
+            self.scale = "scale(1)"
+            self.scaler = 1
+            badge_obj.scale = 1
+            self.bottom = [0,0]
+            self.medalText = ""
+            self.isExtend = False
    
     def present(self,data):
         
@@ -25,7 +45,7 @@ class KaggleStyles:
        
 
 
-            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='isolation:isolate' viewBox='0 0 495 195' width='495px' height='195px'>
+            <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='isolation:isolate' viewBox='0 0 {str(495*self.scaler)} 195' width='{str(495*self.scaler)}px' height='195px'>
                     {style}
                     <defs>
                         <clipPath id='_clipPath_OZGVUqgkTHHpPTYeqOmK3uLgktRVSwWw'>
@@ -36,7 +56,7 @@ class KaggleStyles:
                
 
 
-                    <g xmlns="http://www.w3.org/2000/svg" style="isolation:isolate">
+                    <g xmlns="http://www.w3.org/2000/svg"  transform="scale({self.scaler},1)">
                         <path d="M 4.5 0 L 490.5 0 C 492.984 0 495 2.016 495 4.5 L 495 190.5 C 495 192.984 492.984 195 490.5 195 L 4.5 195 C 2.016 195 0 192.984 0 190.5 L 0 4.5 C 0 2.016 2.016 0 4.5 0 Z" style="stroke: #e4e2e2; fill: #fffefe;stroke-miterlimit:10;rx: 4.5;"/>
                     </g>
                     
@@ -64,25 +84,28 @@ class KaggleStyles:
                     </text>
                 </g>
                 
-               <g xmlns="http://www.w3.org/2000/svg" transform="translate(20.000000,185.000000) scale(0.050000,-0.05)" fill="#ad7615" stroke="none">
+               <g xmlns="http://www.w3.org/2000/svg" transform="translate({20+self.bottom[0]},185.000000) scale(0.050000,-0.05)" fill="#ad7615" stroke="none">
                 <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#ffd448;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
                 <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
                 
                 </g>
                 
-                <g xmlns="http://www.w3.org/2000/svg" transform="translate(200.000000,185.000000) scale(0.050000,-0.05)" fill="#838280" stroke="none">
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate({200+self.bottom[0]},185.000000) scale(0.050000,-0.05)" fill="#838280" stroke="none">
                 <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#e9e9e9;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
                 <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
                 </g>
-                <g xmlns="http://www.w3.org/2000/svg" transform="translate(380.000000,185.000000) scale(0.050000,-0.05)" fill="#8e5b3d" stroke="none">
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate({380+self.bottom[0]},185.000000) scale(0.050000,-0.05)" fill="#8e5b3d" stroke="none">
                 <circle xmlns="http://www.w3.org/2000/svg" cx="250" cy="270" r="250"  style="fill:#f0ba7c;opacity: 0; animation: fadein 0.5s linear forwards 0.4s;"/>
                 <path d="M170 515 c-103 -33 -170 -128 -170 -243 0 -73 15 -114 60 -166 152                 -172 440 -63 440 166 0 99 -44 175 -127 220 -62 34 -142 43 -203 23z m172 -71                 l31 -16 -134 -134 c-74 -74 -137 -134 -141 -134 -17 0 -38 62 -38 110 0 62 18                 106 58 143 59 57 150 69 224 31z"/>
                 </g>
                 
                 
+                 <text x="20" y="173" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:16px;font-style:normal;fill:#56595e;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {self.medalText}
+                    </text>
+
                 
-                
-                <g xmlns="http://www.w3.org/2000/svg" transform="translate(40,185)">
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate({40+self.bottom[1]},185)">
                     
                     <text x="20" y="-12" dominant-baseline="middle" stroke-width="0" style="font-family: Roboto, system-ui, sans-serif;font-weight:700;font-size:16px;font-style:normal;fill:#ad7615;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
                         {self.medalCounts(data,type="gold")}
@@ -100,9 +123,14 @@ class KaggleStyles:
                   
                 </g>
                 
-                {badge[data["performanceTier"]]}
                 
-                <g xmlns="http://www.w3.org/2000/svg" transform="translate(392,120)">
+                
+                {badge_obj.gen_badge()[data["performanceTier"]]}
+                
+                
+                {self.rankStatus(data,self.isExtend)}
+                
+                <g xmlns="http://www.w3.org/2000/svg" transform="translate({345*(badge_obj.scale)+47},120)">
                 
                  
                     <text x="0" y="0" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:{tier_colour[data["performanceTier"]]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
@@ -120,6 +148,9 @@ class KaggleStyles:
 
 
             """
+            
+            
+     
     
     def medalCounts(self,data,type = None):
         """
@@ -147,3 +178,46 @@ class KaggleStyles:
             count += data[section][types[type]]
             
         return count
+    
+    def rankStatus(self,data,extend=False):
+        if data["performanceTier"] in ['novice','contributor','staff'] or not extend:
+            return ""
+        
+        cat = data['performanceTierCategory'] 
+        
+        summary = {"notebooks":"scriptsSummary","discussion":"discussionsSummary","competitions":"competitionsSummary","datasets":"datasetsSummary"}
+        
+        best = data[summary[cat]]["rankHighest"]
+        current = data[summary[cat]]["rankCurrent"]
+        outof = data[summary[cat]]["rankOutOf"]
+        
+        text = f"""
+        
+          <g xmlns="http://www.w3.org/2000/svg" transform="translate(400,40)">
+                
+                 
+                 <text x="0" y="0" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:900;font-size:14px;font-style:normal;fill:{tier_colour[data["performanceTier"]]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        Current Rank
+                    </text>
+                 
+                 
+                    <text x="0" y="16" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:{tier_colour[data["performanceTier"]]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {current}
+                    </text>
+                     <text x="0" y="32" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:400;font-size:12px;font-style:normal;fill:#56595e;stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        Out of {outof}
+                    </text>
+                 <text x="0" y="50" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:900;font-size:14px;font-style:normal;fill:{tier_colour[data["performanceTier"]]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        Highest Rank
+                    </text>
+                    
+                    <text x="0" y="66" word-spacing="-0.2" dominant-baseline="middle" text-anchor="middle" stroke-width="0" style="font-family:sans-serif;font-weight:400;font-size:14px;font-style:normal;fill:{tier_colour[data["performanceTier"]]};stroke:none; opacity: 0; animation: fadein 0.5s linear forwards 0.6s;">
+                        {best}
+                    </text>
+                </g>
+        
+        
+        """
+        return text
+        
+        

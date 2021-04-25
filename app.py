@@ -25,9 +25,16 @@ def index():
 @app.route("/api",methods=["GET"])
 def api():
     if "user" in request.args:
+        
+        if "extend" in request.args:
+            extend = True
+        else:
+            extend = False
+        
         complete_url = "https://kaggle.com/"+request.args["user"]
         response = requests.get(complete_url)
-        kstyle = KaggleStyles()
+        kstyle = KaggleStyles(extend=extend)
+        
         if response.status_code == 200:
             crawler = KaggleStripper(response)
             data = crawler.start_requests()
@@ -41,16 +48,13 @@ def api():
             
             response = make_response(kstyle.present(obj), 200)
             response.mimetype = "image/svg+xml"
+            response.cache_control.max_age = 86400
             return response
         return "kaggle profile does not exist"
     return "No user!"
 
 
-@app.route("/selection",methods=["GET"])
-def selection():
-    response = HtmlResponse(url = 'http://kaggle.com') 
-    f = Selector(response = response).xpath('//span/text()').extract()
-    return f
+
 
 
 
